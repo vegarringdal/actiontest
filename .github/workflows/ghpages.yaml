@@ -1,0 +1,37 @@
+name: Build and Deploy
+on:
+  push:
+    branches:
+      - "!*"
+    tags:
+      - "v*"
+jobs:
+  updateBranch:
+    name: Update staging branch
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - uses: Embraser01/update-git-branch-action@v1.0.0
+      if: github.ref == 'refs/heads/main'
+      with:
+        branch: sample
+        force: 1 # To push-force to the branch
+        githubToken: ${{ secrets.DEV_CODE }} # Github Token
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2 # If you're using actions/checkout@v2 you must set persist-credentials to false in most cases for the deployment to work correctly.
+        with:
+          persist-credentials: false
+ 
+      - name: Install and Build 🔧 
+        run: |
+          npm install
+          npm run build
+ 
+      - name: Deploy 🚀
+        uses: actions-js/push@master
+        with:
+          branch: 'sample'
+          github_token: ${{ secrets.DEV_CODE }}

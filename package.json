@@ -1,0 +1,20 @@
+{
+  "name": "actiontest",
+  "version": "1.0.0",
+  "description": "test of github action",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"yay\"",
+    "build": "echo \"build yay\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vegarringdal/actiontest.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vegarringdal/actiontest/issues"
+  },
+  "homepage": "https://github.com/vegarringdal/actiontest#readme"
+}
